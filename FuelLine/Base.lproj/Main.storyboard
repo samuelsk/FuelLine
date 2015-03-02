@@ -17,7 +17,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zQe-D4-UBc">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t8i-Cc-pVB">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="search" id="Zs0-xK-7dA">
+                                        <connections>
+                                            <action selector="buscar:" destination="BYZ-38-t0r" id="kPV-Ac-kOI"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Filtrar" id="Ea7-yg-MBh"/>
+                                    <barButtonItem title="Centralizar" id="8c6-id-man">
+                                        <connections>
+                                            <action selector="centralizar:" destination="BYZ-38-t0r" id="Fhf-Qu-9ia"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem image="maisbarato" id="k3C-Ig-crr"/>
+                                    <barButtonItem title="Limpar" id="dUq-CI-1JM"/>
+                                </items>
+                            </toolbar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zQe-D4-UBc">
                                 <rect key="frame" x="0.0" y="28" width="600" height="600"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="400" id="lAQ-r5-fRP"/>
@@ -32,85 +50,78 @@
                                         <include reference="lAQ-r5-fRP"/>
                                     </mask>
                                 </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="lAQ-r5-fRP"/>
+                                    </mask>
+                                </variation>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ry-FN-mNE">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Filtrar">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0K-gr-rBt">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Mais barato">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8zH-kL-1XW">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Centralizar">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="centralizar:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WZC-Rh-e9Z"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="zQe-D4-UBc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="3jX-Gd-VXw"/>
-                            <constraint firstItem="E0K-gr-rBt" firstAttribute="top" secondItem="zQe-D4-UBc" secondAttribute="bottom" constant="78" id="3t3-Mq-mFA"/>
-                            <constraint firstItem="2ry-FN-mNE" firstAttribute="baseline" secondItem="E0K-gr-rBt" secondAttribute="baseline" id="B5h-7l-6bo"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="E0K-gr-rBt" secondAttribute="trailing" constant="20" id="NUh-sS-M78"/>
-                            <constraint firstItem="8zH-kL-1XW" firstAttribute="baseline" secondItem="2ry-FN-mNE" secondAttribute="baseline" id="VHE-cm-ePa"/>
+                            <constraint firstAttribute="trailing" secondItem="t8i-Cc-pVB" secondAttribute="trailing" id="C6D-Wa-hwy"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="zQe-D4-UBc" secondAttribute="bottom" constant="-7" id="UIQ-m8-zyr"/>
+                            <constraint firstItem="t8i-Cc-pVB" firstAttribute="leading" secondItem="zQe-D4-UBc" secondAttribute="leading" id="Usu-e7-Gnm"/>
                             <constraint firstAttribute="trailing" secondItem="zQe-D4-UBc" secondAttribute="trailing" id="cTY-Fq-kG9"/>
-                            <constraint firstItem="8zH-kL-1XW" firstAttribute="centerX" secondItem="zQe-D4-UBc" secondAttribute="centerX" id="kqJ-6x-BWG"/>
-                            <constraint firstItem="2ry-FN-mNE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="41" id="mTu-Jn-j0B"/>
+                            <constraint firstItem="t8i-Cc-pVB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="flh-B3-W6y"/>
+                            <constraint firstItem="t8i-Cc-pVB" firstAttribute="bottom" secondItem="zQe-D4-UBc" secondAttribute="top" id="nVX-VW-BVV"/>
+                            <constraint firstItem="t8i-Cc-pVB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wQ7-zK-dPc"/>
                             <constraint firstItem="zQe-D4-UBc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="ygX-JW-YGF"/>
+                            <constraint firstItem="t8i-Cc-pVB" firstAttribute="trailing" secondItem="zQe-D4-UBc" secondAttribute="trailing" id="yuf-n7-0ns"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="2ry-FN-mNE"/>
-                                <exclude reference="E0K-gr-rBt"/>
-                                <exclude reference="8zH-kL-1XW"/>
+                                <exclude reference="t8i-Cc-pVB"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="C6D-Wa-hwy"/>
+                                <exclude reference="Usu-e7-Gnm"/>
+                                <exclude reference="flh-B3-W6y"/>
+                                <exclude reference="nVX-VW-BVV"/>
+                                <exclude reference="wQ7-zK-dPc"/>
+                                <exclude reference="yuf-n7-0ns"/>
                                 <exclude reference="3jX-Gd-VXw"/>
+                                <exclude reference="UIQ-m8-zyr"/>
                                 <exclude reference="cTY-Fq-kG9"/>
                                 <exclude reference="ygX-JW-YGF"/>
-                                <exclude reference="B5h-7l-6bo"/>
-                                <exclude reference="mTu-Jn-j0B"/>
-                                <exclude reference="VHE-cm-ePa"/>
-                                <exclude reference="kqJ-6x-BWG"/>
-                                <exclude reference="3t3-Mq-mFA"/>
-                                <exclude reference="NUh-sS-M78"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="2ry-FN-mNE"/>
-                                <include reference="E0K-gr-rBt"/>
-                                <include reference="8zH-kL-1XW"/>
-                            </mask>
                             <mask key="constraints">
                                 <include reference="3jX-Gd-VXw"/>
                                 <include reference="cTY-Fq-kG9"/>
                                 <include reference="ygX-JW-YGF"/>
-                                <include reference="B5h-7l-6bo"/>
-                                <include reference="mTu-Jn-j0B"/>
-                                <include reference="VHE-cm-ePa"/>
-                                <include reference="kqJ-6x-BWG"/>
-                                <include reference="3t3-Mq-mFA"/>
-                                <include reference="NUh-sS-M78"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="t8i-Cc-pVB"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="C6D-Wa-hwy"/>
+                                <include reference="Usu-e7-Gnm"/>
+                                <include reference="flh-B3-W6y"/>
+                                <include reference="nVX-VW-BVV"/>
+                                <include reference="wQ7-zK-dPc"/>
+                                <include reference="yuf-n7-0ns"/>
+                                <exclude reference="3jX-Gd-VXw"/>
+                                <include reference="UIQ-m8-zyr"/>
+                                <exclude reference="cTY-Fq-kG9"/>
+                                <exclude reference="ygX-JW-YGF"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="worldmap" destination="zQe-D4-UBc" id="yv0-oR-Y64"/>
+                        <outlet property="mapView" destination="zQe-D4-UBc" id="9cn-kC-zSW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="379.5" y="313"/>
+            <point key="canvasLocation" x="379.5" y="312.75"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="maisbarato" width="27" height="27"/>
+    </resources>
 </document>

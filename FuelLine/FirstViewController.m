@@ -19,7 +19,6 @@
     locationManager = [[CLLocationManager alloc] init];
     [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
     [locationManager setDelegate:self];
-//    self.locationManager.delegate = self;
     if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
         [locationManager requestWhenInUseAuthorization];
     }
@@ -31,18 +30,43 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-{
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     NSLog(@"%@", [locations lastObject]);
     CLLocationCoordinate2D loc = [[locations lastObject] coordinate];
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 250, 250);
-    [_worldmap setRegion:region animated:YES];
-    _worldmap.showsUserLocation=YES;
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 500, 500);
+    [_mapView setRegion:region animated:YES];
+    _mapView.showsUserLocation=YES;
     [locationManager stopUpdatingLocation];
 }
--(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
-    NSLog(@"Atualizando...");
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"Erro.");
 }
+
+- (IBAction)buscar:(id)sender {
+    [_mapView removeAnnotations:_mapView.annotations];
+    MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
+    request.naturalLanguageQuery = @"Fuel";
+    request.region = _mapView.region;
+    
+    NSMutableArray *matchingItems = [[NSMutableArray alloc] init];
+    
+    MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
+    
+    [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
+        if (response.mapItems.count == 0)
+            NSLog(@"Nenhum posto encontrado.");
+        else
+            for (MKMapItem *item in response.mapItems) {
+                [matchingItems addObject:item];
+                MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+                annotation.coordinate = item.placemark.coordinate;
+                annotation.title = item.name;
+                [_mapView addAnnotation:annotation];
+            }
+    }];
+}
+
 - (IBAction)centralizar:(id)sender {
     [locationManager startUpdatingLocation];
 }

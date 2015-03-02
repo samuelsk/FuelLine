@@ -14,7 +14,11 @@
     CLLocationManager *locationManager;
     
 }
-@property (weak, nonatomic) IBOutlet MKMapView *worldmap;
+
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+
+- (IBAction)buscar:(id)sender;
 - (IBAction)centralizar:(id)sender;
+
 
 @end
