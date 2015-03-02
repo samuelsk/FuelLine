@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>8DC04691-E87A-40B8-93F1-0AB3ACF82175</string>
+	<key>IDESourceControlProjectName</key>
+	<string>FuelLine</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>FDCBD9ACCCD4620B9D5847FD9909D917CF57945E</key>
+		<string>https://github.com/samuelsk/FuelLine.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>FuelLine.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>FDCBD9ACCCD4620B9D5847FD9909D917CF57945E</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/samuelsk/FuelLine.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>FDCBD9ACCCD4620B9D5847FD9909D917CF57945E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FDCBD9ACCCD4620B9D5847FD9909D917CF57945E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>FuelLine</string>
+		</dict>
+	</array>
+</dict>
+</plist>

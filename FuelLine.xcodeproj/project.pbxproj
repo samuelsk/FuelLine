@@ -9,11 +9,13 @@
 /* Begin PBXBuildFile section */
 		7EA85DDF1AA4D2740003104D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA85DDE1AA4D2740003104D /* main.m */; };
 		7EA85DE21AA4D2740003104D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA85DE11AA4D2740003104D /* AppDelegate.m */; };
-		7EA85DE51AA4D2740003104D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA85DE41AA4D2740003104D /* ViewController.m */; };
+		7EA85DE51AA4D2740003104D /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA85DE41AA4D2740003104D /* FirstViewController.m */; };
 		7EA85DE81AA4D2740003104D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EA85DE61AA4D2740003104D /* Main.storyboard */; };
 		7EA85DEA1AA4D2740003104D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EA85DE91AA4D2740003104D /* Images.xcassets */; };
 		7EA85DED1AA4D2740003104D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA85DEB1AA4D2740003104D /* LaunchScreen.xib */; };
 		7EA85DF91AA4D2740003104D /* FuelLineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA85DF81AA4D2740003104D /* FuelLineTests.m */; };
+		D412BDD91AA4D4F000571DB2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D412BDD81AA4D4F000571DB2 /* CoreLocation.framework */; };
+		D412BDDB1AA4D4F800571DB2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D412BDDA1AA4D4F800571DB2 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +34,16 @@
 		7EA85DDE1AA4D2740003104D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7EA85DE01AA4D2740003104D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7EA85DE11AA4D2740003104D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		7EA85DE31AA4D2740003104D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		7EA85DE41AA4D2740003104D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		7EA85DE31AA4D2740003104D /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		7EA85DE41AA4D2740003104D /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		7EA85DE71AA4D2740003104D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7EA85DE91AA4D2740003104D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7EA85DEC1AA4D2740003104D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		7EA85DF21AA4D2740003104D /* FuelLineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FuelLineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA85DF71AA4D2740003104D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7EA85DF81AA4D2740003104D /* FuelLineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FuelLineTests.m; sourceTree = "<group>"; };
+		D412BDD81AA4D4F000571DB2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D412BDDA1AA4D4F800571DB2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +51,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D412BDDB1AA4D4F800571DB2 /* MapKit.framework in Frameworks */,
+				D412BDD91AA4D4F000571DB2 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +69,8 @@
 		7EA85DD01AA4D2740003104D = {
 			isa = PBXGroup;
 			children = (
+				D412BDDA1AA4D4F800571DB2 /* MapKit.framework */,
+				D412BDD81AA4D4F000571DB2 /* CoreLocation.framework */,
 				7EA85DDB1AA4D2740003104D /* FuelLine */,
 				7EA85DF51AA4D2740003104D /* FuelLineTests */,
 				7EA85DDA1AA4D2740003104D /* Products */,
@@ -83,8 +91,8 @@
 			children = (
 				7EA85DE01AA4D2740003104D /* AppDelegate.h */,
 				7EA85DE11AA4D2740003104D /* AppDelegate.m */,
-				7EA85DE31AA4D2740003104D /* ViewController.h */,
-				7EA85DE41AA4D2740003104D /* ViewController.m */,
+				7EA85DE31AA4D2740003104D /* FirstViewController.h */,
+				7EA85DE41AA4D2740003104D /* FirstViewController.m */,
 				7EA85DE61AA4D2740003104D /* Main.storyboard */,
 				7EA85DE91AA4D2740003104D /* Images.xcassets */,
 				7EA85DEB1AA4D2740003104D /* LaunchScreen.xib */,
@@ -219,7 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EA85DE51AA4D2740003104D /* ViewController.m in Sources */,
+				7EA85DE51AA4D2740003104D /* FirstViewController.m in Sources */,
 				7EA85DE21AA4D2740003104D /* AppDelegate.m in Sources */,
 				7EA85DDF1AA4D2740003104D /* main.m in Sources */,
 			);
@@ -414,6 +422,7 @@
 				7EA85DFE1AA4D2740003104D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7EA85DFF1AA4D2740003104D /* Build configuration list for PBXNativeTarget "FuelLineTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +431,7 @@
 				7EA85E011AA4D2740003104D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
