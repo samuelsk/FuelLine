@@ -20,19 +20,27 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t8i-Cc-pVB">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
-                                    <barButtonItem systemItem="search" id="Zs0-xK-7dA">
+                                    <barButtonItem image="gas_station" id="Zs0-xK-7dA">
                                         <connections>
-                                            <action selector="buscar:" destination="BYZ-38-t0r" id="kPV-Ac-kOI"/>
+                                            <action selector="marcar:" destination="BYZ-38-t0r" id="NWG-fa-SgN"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Filtrar" id="Ea7-yg-MBh"/>
-                                    <barButtonItem title="Centralizar" id="8c6-id-man">
+                                    <barButtonItem image="icon-target" id="8c6-id-man">
                                         <connections>
                                             <action selector="centralizar:" destination="BYZ-38-t0r" id="Fhf-Qu-9ia"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem image="maisbarato" id="k3C-Ig-crr"/>
-                                    <barButtonItem title="Limpar" id="dUq-CI-1JM"/>
+                                    <barButtonItem image="Household-Broom-icon" id="dUq-CI-1JM">
+                                        <connections>
+                                            <action selector="limpar:" destination="BYZ-38-t0r" id="MdO-KW-bWg"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Filtrar" id="Ea7-yg-MBh">
+                                        <connections>
+                                            <segue destination="YXb-rW-yAI" kind="show" identifier="filtroTableView" id="riH-bO-QFI"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zQe-D4-UBc">
@@ -118,10 +126,131 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="379.5" y="312.75"/>
+            <point key="canvasLocation" x="337.5" y="254.25"/>
+        </scene>
+        <!--Filtro Table View Controller-->
+        <scene sceneID="7Wb-GA-YM6">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VQ0-qV-cQN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="YXb-rW-yAI" customClass="FiltroTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="63" sectionHeaderHeight="22" sectionFooterHeight="22" id="rMm-oG-d9D">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <toolbar key="tableHeaderView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Snc-Sb-y9D">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <items>
+                                <barButtonItem systemItem="cancel" id="U1K-DL-kF4">
+                                    <connections>
+                                        <action selector="voltar:" destination="YXb-rW-yAI" id="eN2-F2-hzp"/>
+                                    </connections>
+                                </barButtonItem>
+                                <barButtonItem title="Filtrar por preço" id="kSp-KX-gXd"/>
+                            </items>
+                        </toolbar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FiltroTableCell" rowHeight="63" id="RGp-i4-CzI" customClass="FiltroTableViewCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RGp-i4-CzI" id="Gjk-wn-JCn">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bandeira" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FTX-Us-nAG">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="42" y="10" width="69" height="21"/>
+                                            </variation>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gasolina" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xh9-XN-f6j">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="167" y="10" width="67" height="21"/>
+                                            </variation>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Álcool" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ReV-nY-Qix">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="309" y="10" width="48" height="21"/>
+                                            </variation>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nomeBandeira" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EdV-Z0-GeM">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="20" y="33" width="112" height="21"/>
+                                            </variation>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="precoGas" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZD-Cl-IFO">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="163" y="33" width="75" height="21"/>
+                                            </variation>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="precoAlc" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FtC-lO-5we">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="299" y="33" width="68" height="21"/>
+                                            </variation>
+                                        </label>
+                                    </subviews>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="FTX-Us-nAG"/>
+                                            <exclude reference="xh9-XN-f6j"/>
+                                            <exclude reference="ReV-nY-Qix"/>
+                                            <exclude reference="EdV-Z0-GeM"/>
+                                            <exclude reference="IZD-Cl-IFO"/>
+                                            <exclude reference="FtC-lO-5we"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="heightClass=regular-widthClass=compact">
+                                        <mask key="subviews">
+                                            <include reference="FTX-Us-nAG"/>
+                                            <include reference="xh9-XN-f6j"/>
+                                            <include reference="ReV-nY-Qix"/>
+                                            <include reference="EdV-Z0-GeM"/>
+                                            <include reference="IZD-Cl-IFO"/>
+                                            <include reference="FtC-lO-5we"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nomeBandeira" destination="EdV-Z0-GeM" id="RFP-eV-AAo"/>
+                                    <outlet property="precoAlc" destination="FtC-lO-5we" id="uPg-Xk-8Lr"/>
+                                    <outlet property="precoGas" destination="IZD-Cl-IFO" id="Syc-Ty-hpG"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="YXb-rW-yAI" id="VDx-PH-zAW"/>
+                            <outlet property="delegate" destination="YXb-rW-yAI" id="aep-Dx-AFA"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="1254" y="254.25"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Household-Broom-icon" width="27" height="27"/>
+        <image name="gas_station" width="27" height="27"/>
+        <image name="icon-target" width="27" height="27"/>
         <image name="maisbarato" width="27" height="27"/>
     </resources>
 </document>

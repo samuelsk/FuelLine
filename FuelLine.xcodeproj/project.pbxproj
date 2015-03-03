@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21B7E0261AA62B87006B23DC /* FiltroTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B7E0251AA62B87006B23DC /* FiltroTableViewController.m */; };
+		21B7E0291AA641D0006B23DC /* FiltroTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B7E0281AA641D0006B23DC /* FiltroTableViewCell.m */; };
 		7EA85DDF1AA4D2740003104D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA85DDE1AA4D2740003104D /* main.m */; };
 		7EA85DE21AA4D2740003104D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA85DE11AA4D2740003104D /* AppDelegate.m */; };
 		7EA85DE51AA4D2740003104D /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA85DE41AA4D2740003104D /* FirstViewController.m */; };
@@ -29,6 +31,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		21B7E0241AA62B87006B23DC /* FiltroTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FiltroTableViewController.h; path = ../FiltroTableViewController.h; sourceTree = "<group>"; };
+		21B7E0251AA62B87006B23DC /* FiltroTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FiltroTableViewController.m; path = ../FiltroTableViewController.m; sourceTree = "<group>"; };
+		21B7E0271AA641D0006B23DC /* FiltroTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiltroTableViewCell.h; sourceTree = "<group>"; };
+		21B7E0281AA641D0006B23DC /* FiltroTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiltroTableViewCell.m; sourceTree = "<group>"; };
 		7EA85DD91AA4D2740003104D /* FuelLine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FuelLine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA85DDD1AA4D2740003104D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7EA85DDE1AA4D2740003104D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -89,6 +95,10 @@
 		7EA85DDB1AA4D2740003104D /* FuelLine */ = {
 			isa = PBXGroup;
 			children = (
+				21B7E0241AA62B87006B23DC /* FiltroTableViewController.h */,
+				21B7E0251AA62B87006B23DC /* FiltroTableViewController.m */,
+				21B7E0271AA641D0006B23DC /* FiltroTableViewCell.h */,
+				21B7E0281AA641D0006B23DC /* FiltroTableViewCell.m */,
 				7EA85DE01AA4D2740003104D /* AppDelegate.h */,
 				7EA85DE11AA4D2740003104D /* AppDelegate.m */,
 				7EA85DE31AA4D2740003104D /* FirstViewController.h */,
@@ -228,6 +238,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EA85DE51AA4D2740003104D /* FirstViewController.m in Sources */,
+				21B7E0261AA62B87006B23DC /* FiltroTableViewController.m in Sources */,
+				21B7E0291AA641D0006B23DC /* FiltroTableViewCell.m in Sources */,
 				7EA85DE21AA4D2740003104D /* AppDelegate.m in Sources */,
 				7EA85DDF1AA4D2740003104D /* main.m in Sources */,
 			);

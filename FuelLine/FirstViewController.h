@@ -15,10 +15,13 @@
     
 }
 
+@property NSMutableArray* matchingItems;
+@property NSMutableArray *precosGas;
+@property NSMutableArray *precosAlc;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
-- (IBAction)buscar:(id)sender;
+- (IBAction)marcar:(id)sender;
 - (IBAction)centralizar:(id)sender;
-
+- (IBAction)limpar:(id)sender;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "FirstViewController.h"
+#import "FiltroTableViewController.h"
 
 @interface FirstViewController ()
 
@@ -33,7 +34,7 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     NSLog(@"%@", [locations lastObject]);
     CLLocationCoordinate2D loc = [[locations lastObject] coordinate];
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 500, 500);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 1000, 1000);
     [_mapView setRegion:region animated:YES];
     _mapView.showsUserLocation=YES;
     [locationManager stopUpdatingLocation];
@@ -43,14 +44,13 @@
     NSLog(@"Erro.");
 }
 
-- (IBAction)buscar:(id)sender {
+- (IBAction)marcar:(id)sender {
     [_mapView removeAnnotations:_mapView.annotations];
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
     request.naturalLanguageQuery = @"Fuel";
     request.region = _mapView.region;
     
-    NSMutableArray *matchingItems = [[NSMutableArray alloc] init];
-    
+    _matchingItems = [[NSMutableArray alloc] init];
     MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
     
     [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
@@ -58,16 +58,35 @@
             NSLog(@"Nenhum posto encontrado.");
         else
             for (MKMapItem *item in response.mapItems) {
-                [matchingItems addObject:item];
                 MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
                 annotation.coordinate = item.placemark.coordinate;
                 annotation.title = item.name;
+                NSNumber *precoGas = [[NSNumber alloc] initWithDouble:arc4random_uniform(4)];
+                NSNumber *precoAlc = [[NSNumber alloc] initWithDouble:arc4random_uniform(4)];
+                annotation.subtitle = (@"Gasolina/Álcool: %g/%g");
+                [_precosGas addObject:precoGas];
+                [_precosAlc addObject:precoAlc];
+                [_matchingItems addObject:item];
                 [_mapView addAnnotation:annotation];
             }
     }];
+    
 }
 
 - (IBAction)centralizar:(id)sender {
     [locationManager startUpdatingLocation];
 }
+
+- (IBAction)limpar:(id)sender {
+     [_mapView removeAnnotations:_mapView.annotations];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier]isEqualToString:@"filtroTableView"]) {
+        FiltroTableViewController *filtroTableController = [[FiltroTableViewController alloc] init];
+        
+        filtroTableController.matchingItems = [[NSMutableArray alloc] initWithArray:_matchingItems];
+    }
+}
+
 @end
