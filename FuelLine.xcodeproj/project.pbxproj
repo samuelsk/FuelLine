@@ -19,6 +19,7 @@
 		7EED34A21AA775AA00531817 /* Posto.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EED34A11AA775AA00531817 /* Posto.m */; };
 		D412BDD91AA4D4F000571DB2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D412BDD81AA4D4F000571DB2 /* CoreLocation.framework */; };
 		D412BDDB1AA4D4F800571DB2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D412BDDA1AA4D4F800571DB2 /* MapKit.framework */; };
+		D49889211AA7829E00473504 /* DescricaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D49889201AA7829E00473504 /* DescricaoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		7EED34A11AA775AA00531817 /* Posto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Posto.m; sourceTree = "<group>"; };
 		D412BDD81AA4D4F000571DB2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D412BDDA1AA4D4F800571DB2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		D498891F1AA7829E00473504 /* DescricaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescricaoViewController.h; sourceTree = "<group>"; };
+		D49889201AA7829E00473504 /* DescricaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescricaoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +105,8 @@
 				21B7E0251AA62B87006B23DC /* FiltroTableViewController.m */,
 				21B7E0271AA641D0006B23DC /* FiltroTableViewCell.h */,
 				21B7E0281AA641D0006B23DC /* FiltroTableViewCell.m */,
+				D498891F1AA7829E00473504 /* DescricaoViewController.h */,
+				D49889201AA7829E00473504 /* DescricaoViewController.m */,
 				7EA85DE01AA4D2740003104D /* AppDelegate.h */,
 				7EA85DE11AA4D2740003104D /* AppDelegate.m */,
 				7EA85DE31AA4D2740003104D /* FirstViewController.h */,
@@ -247,6 +252,7 @@
 				21B7E0291AA641D0006B23DC /* FiltroTableViewCell.m in Sources */,
 				7EED34A21AA775AA00531817 /* Posto.m in Sources */,
 				7EA85DE21AA4D2740003104D /* AppDelegate.m in Sources */,
+				D49889211AA7829E00473504 /* DescricaoViewController.m in Sources */,
 				7EA85DDF1AA4D2740003104D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

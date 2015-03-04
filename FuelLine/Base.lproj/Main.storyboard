@@ -234,6 +234,7 @@
                                     <outlet property="nomeBandeira" destination="EdV-Z0-GeM" id="RFP-eV-AAo"/>
                                     <outlet property="precoAlc" destination="FtC-lO-5we" id="uPg-Xk-8Lr"/>
                                     <outlet property="precoGas" destination="IZD-Cl-IFO" id="Syc-Ty-hpG"/>
+                                    <segue destination="Eud-3T-pGY" kind="show" id="Vm0-cb-Sjq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -245,7 +246,134 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VQ0-qV-cQN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1254" y="254"/>
+            <point key="canvasLocation" x="1149" y="254"/>
+        </scene>
+        <!--Descricao View Controller-->
+        <scene sceneID="Faj-uR-taQ">
+            <objects>
+                <viewController id="Eud-3T-pGY" customClass="DescricaoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rwW-Pm-LBj"/>
+                        <viewControllerLayoutGuide type="bottom" id="UY3-dq-3w2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="slV-dS-hCL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preço Gasolina:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJ7-tn-RFL">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="72" y="327" width="122" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preço Álcool:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Rt-Ty-3rs">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="72" y="380" width="102" height="21"/>
+                                </variation>
+                            </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lXp-qw-wC8">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="cancel" id="PYu-vu-lmA">
+                                        <connections>
+                                            <action selector="voltar:" destination="Eud-3T-pGY" id="GH0-vy-ErQ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nomeBandeira" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fld-rX-LLN">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="72" y="87" width="256" height="86"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="endereco" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7g-xa-n12">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.3737373737373737" green="0.3737373737373737" blue="0.3737373737373737" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="147" width="368" height="117"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="gasolina" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LeW-cf-AWN">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="202" y="327" width="64" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="alcool" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26p-pQ-cRV">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="182" y="380" width="46" height="21"/>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lXp-qw-wC8" firstAttribute="leading" secondItem="slV-dS-hCL" secondAttribute="leading" id="3bd-cs-LU2"/>
+                            <constraint firstAttribute="trailing" secondItem="lXp-qw-wC8" secondAttribute="trailing" id="7XY-OV-gLK"/>
+                            <constraint firstItem="lXp-qw-wC8" firstAttribute="top" secondItem="rwW-Pm-LBj" secondAttribute="bottom" id="PWF-Ot-a3N"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="qJ7-tn-RFL"/>
+                                <exclude reference="1Rt-Ty-3rs"/>
+                                <exclude reference="lXp-qw-wC8"/>
+                                <exclude reference="fld-rX-LLN"/>
+                                <exclude reference="F7g-xa-n12"/>
+                                <exclude reference="LeW-cf-AWN"/>
+                                <exclude reference="26p-pQ-cRV"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="3bd-cs-LU2"/>
+                                <exclude reference="7XY-OV-gLK"/>
+                                <exclude reference="PWF-Ot-a3N"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="qJ7-tn-RFL"/>
+                                <include reference="1Rt-Ty-3rs"/>
+                                <include reference="lXp-qw-wC8"/>
+                                <include reference="fld-rX-LLN"/>
+                                <include reference="F7g-xa-n12"/>
+                                <include reference="LeW-cf-AWN"/>
+                                <include reference="26p-pQ-cRV"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="3bd-cs-LU2"/>
+                                <include reference="7XY-OV-gLK"/>
+                                <include reference="PWF-Ot-a3N"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="endereco" destination="F7g-xa-n12" id="a4y-KW-69l"/>
+                        <outlet property="nomeBandeira" destination="fld-rX-LLN" id="FrE-DP-St2"/>
+                        <outlet property="precoAlc" destination="26p-pQ-cRV" id="cDr-5R-bnC"/>
+                        <outlet property="precoGas" destination="LeW-cf-AWN" id="JWl-dc-bTe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Igd-G6-exx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1951.5" y="254"/>
         </scene>
     </scenes>
     <resources>

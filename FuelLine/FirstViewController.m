@@ -25,6 +25,7 @@
         [locationManager requestWhenInUseAuthorization];
     }
     [locationManager startUpdatingLocation];
+    
 }
 
 - (void)didReceiveMemoryWarning {
