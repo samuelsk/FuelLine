@@ -9,6 +9,7 @@
 #import "FiltroTableViewController.h"
 #import "FirstViewController.h"
 #import "FiltroTableViewCell.h"
+#import "Posto.h"
 
 @interface FiltroTableViewController ()
 
@@ -48,11 +49,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FiltroTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FiltroTableCell" forIndexPath:indexPath];
     
-    cell.nomeBandeira.text = [_matchingItems objectAtIndex:0];
-    cell.precoGas.text = @"5";
-    cell.precoAlc.text = @"2";
-    
-    
+    long row = [indexPath row];
+    Posto *posto = _matchingItems[row];
+    cell.nomeBandeira.text = posto.bandeira;
+    cell.precoGas.text = [NSString stringWithFormat:@"%hu", posto.precoGas];
+    cell.precoAlc.text = [NSString stringWithFormat:@"%hu", posto.precoAlc];
     return cell;
 }
 

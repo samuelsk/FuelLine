@@ -8,6 +8,7 @@
 
 #import "FirstViewController.h"
 #import "FiltroTableViewController.h"
+#import "Posto.h"
 
 @interface FirstViewController ()
 
@@ -50,7 +51,7 @@
     request.naturalLanguageQuery = @"Fuel";
     request.region = _mapView.region;
     
-    _matchingItems = [[NSMutableArray alloc] init];
+    _matchingItems = [[NSMutableArray alloc] initWithCapacity:10];
     MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
     
     [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
@@ -58,15 +59,12 @@
             NSLog(@"Nenhum posto encontrado.");
         else
             for (MKMapItem *item in response.mapItems) {
+                Posto *posto = [[Posto alloc] initWithBandeira:item.name andCoordenadas:item.placemark.coordinate andPrecoGas:arc4random_uniform(3)+1 andPrecoAlc:arc4random_uniform(3)+1];
+                [_matchingItems addObject:posto];
                 MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-                annotation.coordinate = item.placemark.coordinate;
-                annotation.title = item.name;
-                NSNumber *precoGas = [[NSNumber alloc] initWithDouble:arc4random_uniform(4)];
-                NSNumber *precoAlc = [[NSNumber alloc] initWithDouble:arc4random_uniform(4)];
-                annotation.subtitle = (@"Gasolina/Álcool: %g/%g");
-                [_precosGas addObject:precoGas];
-                [_precosAlc addObject:precoAlc];
-                [_matchingItems addObject:item];
+                annotation.coordinate = posto.coordenadas;
+                annotation.title = posto.bandeira;
+                annotation.subtitle = [posto getDescricao];
                 [_mapView addAnnotation:annotation];
             }
     }];
@@ -83,7 +81,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier]isEqualToString:@"filtroTableView"]) {
-        FiltroTableViewController *filtroTableController = [[FiltroTableViewController alloc] init];
+        FiltroTableViewController *filtroTableController = [segue destinationViewController];
         
         filtroTableController.matchingItems = [[NSMutableArray alloc] initWithArray:_matchingItems];
     }

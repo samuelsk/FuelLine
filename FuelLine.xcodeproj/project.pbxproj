@@ -16,6 +16,7 @@
 		7EA85DED1AA4D2740003104D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA85DEB1AA4D2740003104D /* LaunchScreen.xib */; };
 		7EA85DF91AA4D2740003104D /* FuelLineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA85DF81AA4D2740003104D /* FuelLineTests.m */; };
 		7EE494CC1AA4F491000D0216 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EE494CB1AA4F491000D0216 /* Images.xcassets */; };
+		7EED34A21AA775AA00531817 /* Posto.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EED34A11AA775AA00531817 /* Posto.m */; };
 		D412BDD91AA4D4F000571DB2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D412BDD81AA4D4F000571DB2 /* CoreLocation.framework */; };
 		D412BDDB1AA4D4F800571DB2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D412BDDA1AA4D4F800571DB2 /* MapKit.framework */; };
 /* End PBXBuildFile section */
@@ -48,6 +49,8 @@
 		7EA85DF71AA4D2740003104D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7EA85DF81AA4D2740003104D /* FuelLineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FuelLineTests.m; sourceTree = "<group>"; };
 		7EE494CB1AA4F491000D0216 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		7EED34A01AA775AA00531817 /* Posto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Posto.h; sourceTree = "<group>"; };
+		7EED34A11AA775AA00531817 /* Posto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Posto.m; sourceTree = "<group>"; };
 		D412BDD81AA4D4F000571DB2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D412BDDA1AA4D4F800571DB2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -116,6 +119,8 @@
 			children = (
 				7EA85DDD1AA4D2740003104D /* Info.plist */,
 				7EA85DDE1AA4D2740003104D /* main.m */,
+				7EED34A01AA775AA00531817 /* Posto.h */,
+				7EED34A11AA775AA00531817 /* Posto.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -240,6 +245,7 @@
 				7EA85DE51AA4D2740003104D /* FirstViewController.m in Sources */,
 				21B7E0261AA62B87006B23DC /* FiltroTableViewController.m in Sources */,
 				21B7E0291AA641D0006B23DC /* FiltroTableViewCell.m in Sources */,
+				7EED34A21AA775AA00531817 /* Posto.m in Sources */,
 				7EA85DE21AA4D2740003104D /* AppDelegate.m in Sources */,
 				7EA85DDF1AA4D2740003104D /* main.m in Sources */,
 			);

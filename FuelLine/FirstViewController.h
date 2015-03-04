@@ -16,8 +16,6 @@
 }
 
 @property NSMutableArray* matchingItems;
-@property NSMutableArray *precosGas;
-@property NSMutableArray *precosAlc;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 - (IBAction)marcar:(id)sender;
