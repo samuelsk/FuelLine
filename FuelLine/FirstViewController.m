@@ -9,6 +9,7 @@
 #import "FirstViewController.h"
 #import "FiltroTableViewController.h"
 #import "Posto.h"
+#define ARC4RANDOM_MAX      0x100000000
 
 @interface FirstViewController ()
 
@@ -60,7 +61,7 @@
             NSLog(@"Nenhum posto encontrado.");
         else
             for (MKMapItem *item in response.mapItems) {
-                Posto *posto = [[Posto alloc] initWithBandeira:item.name andCoordenadas:item.placemark.coordinate andPrecoGas:arc4random_uniform(3)+1 andPrecoAlc:arc4random_uniform(3)+1];
+                Posto *posto = [[Posto alloc] initWithBandeira:item.name andCoordenadas:item.placemark.coordinate andPrecoGas:(((double)arc4random() / ARC4RANDOM_MAX)* 3.0f)+1 andPrecoAlc:(((double)arc4random() / ARC4RANDOM_MAX)* 2.0f)+1];
                 [_matchingItems addObject:posto];
                 MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
                 annotation.coordinate = posto.coordenadas;

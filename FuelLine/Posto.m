@@ -13,7 +13,7 @@
 
 @synthesize bandeira, coordenadas, precoGas, precoAlc;
 
-- (instancetype)initWithBandeira:(NSString *)newBandeira andCoordenadas:(CLLocationCoordinate2D)newCoordenadas andPrecoGas:(short)newPrecoGas andPrecoAlc:(short)newPrecoAlc {
+- (instancetype)initWithBandeira:(NSString *)newBandeira andCoordenadas:(CLLocationCoordinate2D)newCoordenadas andPrecoGas:(double)newPrecoGas andPrecoAlc:(double)newPrecoAlc {
     
     self = [super init];
     bandeira = newBandeira;
@@ -24,7 +24,7 @@
 }
 
 - (NSString *)getDescricao {
-    return [NSString stringWithFormat:@"Gasolina/Álcool: %hd/%hd", precoGas, precoAlc];
+    return [NSString stringWithFormat:@"Gasolina/Álcool: %f/%f", precoGas, precoAlc];
 }
 
 @end

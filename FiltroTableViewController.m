@@ -52,8 +52,8 @@
     long row = [indexPath row];
     Posto *posto = _matchingItems[row];
     cell.nomeBandeira.text = posto.bandeira;
-    cell.precoGas.text = [NSString stringWithFormat:@"%hu", posto.precoGas];
-    cell.precoAlc.text = [NSString stringWithFormat:@"%hu", posto.precoAlc];
+    cell.precoGas.text = [NSString stringWithFormat:@"%.4g", posto.precoGas];
+    cell.precoAlc.text = [NSString stringWithFormat:@"%.4g", posto.precoAlc];
     return cell;
 }
 
