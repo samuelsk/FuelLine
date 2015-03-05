@@ -8,12 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FiltroTableViewController : UITableViewController
 
-@property NSMutableArray* matchingItems;
+@interface FiltroTableViewController : UITableViewController <UIActionSheetDelegate>
+
+@property NSArray *matchingItems;
 
 
 - (IBAction)voltar:(id)sender;
+
+- (IBAction)filtrar:(id)sender;
+
 
 
 @end

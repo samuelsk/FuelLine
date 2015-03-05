@@ -49,9 +49,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FiltroTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FiltroTableCell" forIndexPath:indexPath];
-    
-    long row = [indexPath row];
-    Posto *posto = _matchingItems[row];
+    Posto *posto = _matchingItems[[indexPath row]];
     cell.nomeBandeira.text = posto.bandeira;
     cell.precoGas.text = [NSString stringWithFormat:@"%.4g", posto.precoGas];
     cell.precoAlc.text = [NSString stringWithFormat:@"%.4g", posto.precoAlc];
@@ -111,4 +109,47 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 
 }
+
+- (IBAction)filtrar:(id)sender {
+    UIActionSheet *actionSheet;
+    actionSheet = [[UIActionSheet alloc] initWithTitle:@"Filtrar por:" delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:nil otherButtonTitles:@"Gasolina", @"Álcool", @"Bandeira", nil];
+    
+    
+    
+    [actionSheet showInView:self.view];
+    
+}
+
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==0 || buttonIndex ==1) {
+        [self ordenar:buttonIndex];
+        [self.tableView reloadData];
+    }
+    else if (buttonIndex==2)
+        NSLog(@"Bandeira");
+  
+}
+
+
+- (void)ordenar:(NSInteger)buttonIndex{
+    _matchingItems = [_matchingItems sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        double first, second;
+        if (buttonIndex==0) {
+            first = [(Posto *)obj1 precoGas];
+            second = [(Posto *)obj2 precoGas];
+        } else {
+            first = [(Posto *)obj1 precoAlc];
+            second = [(Posto *)obj2 precoAlc];
+        }
+        if (first > second)
+            return NSOrderedDescending;
+        if (first < second)
+            return NSOrderedAscending;
+        return NSOrderedSame;
+    }];
+}
+
+
+
 @end
