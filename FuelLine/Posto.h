@@ -15,9 +15,11 @@
 
 @property NSString* bandeira;
 @property CLLocationCoordinate2D coordenadas;
+@property NSString *endereco;
+@property NSString *cep;
 @property double precoGas, precoAlc;
 
-- (instancetype) initWithBandeira:(NSString *)newBandeira andCoordenadas:(CLLocationCoordinate2D)newCoordenadas andPrecoGas:(double)newPrecoGas andPrecoAlc:(double)newPrecoAlc;
+- (instancetype) initWithBandeira:(NSString *)newBandeira andCoordenadas:(CLLocationCoordinate2D)newCoordenadas andEndereco:(NSString *)newEndereco andCep:(NSString *)newCep andPrecoGas:(double)newPrecoGas andPrecoAlc:(double)newPrecoAlc;
 - (NSString *)getDescricao;
 
 @end

@@ -26,7 +26,6 @@
         [locationManager requestWhenInUseAuthorization];
     }
     [locationManager startUpdatingLocation];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,7 +60,7 @@
             NSLog(@"Nenhum posto encontrado.");
         else
             for (MKMapItem *item in response.mapItems) {
-                Posto *posto = [[Posto alloc] initWithBandeira:item.name andCoordenadas:item.placemark.coordinate andPrecoGas:(((double)arc4random() / ARC4RANDOM_MAX)* 3.0f)+1 andPrecoAlc:(((double)arc4random() / ARC4RANDOM_MAX)* 2.0f)+1];
+                Posto *posto = [[Posto alloc] initWithBandeira:item.name andCoordenadas:item.placemark.coordinate andEndereco:item.placemark.thoroughfare andCep:item.placemark.postalCode andPrecoGas:(((double)arc4random() / ARC4RANDOM_MAX)* 3.0f)+1 andPrecoAlc:(((double)arc4random() / ARC4RANDOM_MAX)* 2.0f)+1];
                 [_matchingItems addObject:posto];
                 MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
                 annotation.coordinate = posto.coordenadas;
@@ -84,7 +83,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier]isEqualToString:@"filtroTableView"]) {
         FiltroTableViewController *filtroTableController = [segue destinationViewController];
-        
         filtroTableController.matchingItems = [[NSMutableArray alloc] initWithArray:_matchingItems];
     }
 }

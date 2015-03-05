@@ -11,13 +11,15 @@
 
 @implementation Posto
 
-@synthesize bandeira, coordenadas, precoGas, precoAlc;
+@synthesize bandeira, coordenadas, endereco, cep, precoGas, precoAlc;
 
-- (instancetype)initWithBandeira:(NSString *)newBandeira andCoordenadas:(CLLocationCoordinate2D)newCoordenadas andPrecoGas:(double)newPrecoGas andPrecoAlc:(double)newPrecoAlc {
+- (instancetype)initWithBandeira:(NSString *)newBandeira andCoordenadas:(CLLocationCoordinate2D)newCoordenadas andEndereco:(NSString *)newEndereco andCep:(NSString *)newCep  andPrecoGas:(double)newPrecoGas andPrecoAlc:(double)newPrecoAlc {
     
     self = [super init];
     bandeira = newBandeira;
     coordenadas = newCoordenadas;
+    endereco = newEndereco;
+    cep = newCep;
     precoGas = newPrecoGas;
     precoAlc = newPrecoAlc;
     return self;

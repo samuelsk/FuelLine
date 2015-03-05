@@ -9,6 +9,7 @@
 #import "FiltroTableViewController.h"
 #import "FirstViewController.h"
 #import "FiltroTableViewCell.h"
+#import "DescricaoViewController.h"
 #import "Posto.h"
 
 @interface FiltroTableViewController ()
@@ -97,7 +98,9 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
+    DescricaoViewController *descricaoViewController = [segue destinationViewController];
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    descricaoViewController.posto = _matchingItems[[indexPath row]];
 }
 
     // Get the new view controller using [segue destinationViewController].

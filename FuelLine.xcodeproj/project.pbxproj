@@ -84,8 +84,8 @@
 				D412BDDA1AA4D4F800571DB2 /* MapKit.framework */,
 				D412BDD81AA4D4F000571DB2 /* CoreLocation.framework */,
 				7EA85DDB1AA4D2740003104D /* FuelLine */,
-				7EA85DF51AA4D2740003104D /* FuelLineTests */,
 				7EA85DDA1AA4D2740003104D /* Products */,
+				7EA85DF51AA4D2740003104D /* FuelLineTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +101,8 @@
 		7EA85DDB1AA4D2740003104D /* FuelLine */ = {
 			isa = PBXGroup;
 			children = (
+				7EA85DE31AA4D2740003104D /* FirstViewController.h */,
+				7EA85DE41AA4D2740003104D /* FirstViewController.m */,
 				21B7E0241AA62B87006B23DC /* FiltroTableViewController.h */,
 				21B7E0251AA62B87006B23DC /* FiltroTableViewController.m */,
 				21B7E0271AA641D0006B23DC /* FiltroTableViewCell.h */,
@@ -109,8 +111,6 @@
 				D49889201AA7829E00473504 /* DescricaoViewController.m */,
 				7EA85DE01AA4D2740003104D /* AppDelegate.h */,
 				7EA85DE11AA4D2740003104D /* AppDelegate.m */,
-				7EA85DE31AA4D2740003104D /* FirstViewController.h */,
-				7EA85DE41AA4D2740003104D /* FirstViewController.m */,
 				7EA85DE61AA4D2740003104D /* Main.storyboard */,
 				7EE494CB1AA4F491000D0216 /* Images.xcassets */,
 				7EA85DEB1AA4D2740003104D /* LaunchScreen.xib */,
