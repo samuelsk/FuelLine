@@ -9,15 +9,14 @@
 #import <UIKit/UIKit.h>
 
 
-@interface FiltroTableViewController : UITableViewController <UIActionSheetDelegate>
+@interface FiltroViewController : UIViewController <UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property NSArray *matchingItems;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 
 - (IBAction)voltar:(id)sender;
-
 - (IBAction)filtrar:(id)sender;
-
 
 
 @end

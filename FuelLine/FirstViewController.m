@@ -7,7 +7,7 @@
 //
 
 #import "FirstViewController.h"
-#import "FiltroTableViewController.h"
+#import "FiltroViewController.h"
 #import "Posto.h"
 #define ARC4RANDOM_MAX      0x100000000
 
@@ -82,7 +82,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier]isEqualToString:@"filtroTableView"]) {
-        FiltroTableViewController *filtroTableController = [segue destinationViewController];
+        FiltroViewController *filtroTableController = [segue destinationViewController];
         filtroTableController.matchingItems = [[NSMutableArray alloc] initWithArray:_matchingItems];
     }
 }

@@ -6,21 +6,24 @@
 //  Copyright (c) 2015 Samuel Shin Kim. All rights reserved.
 //
 
-#import "FiltroTableViewController.h"
+#import "FiltroViewController.h"
 #import "FirstViewController.h"
 #import "FiltroTableViewCell.h"
 #import "DescricaoViewController.h"
 #import "Posto.h"
 
-@interface FiltroTableViewController ()
+
+@interface FiltroViewController ()
 
 @end
 
-@implementation FiltroTableViewController
+
+@implementation FiltroViewController
+
+@synthesize tableView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.contentInset = UIEdgeInsetsMake(20.0f, 0.0f, 0.0f, 0.0);
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -126,9 +129,6 @@
         [self ordenar:buttonIndex];
         [self.tableView reloadData];
     }
-    else if (buttonIndex==2)
-        NSLog(@"Bandeira");
-  
 }
 
 
