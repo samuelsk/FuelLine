@@ -8,6 +8,7 @@
 
 #import "FirstViewController.h"
 #import "FiltroViewController.h"
+#import "Annotation.h"
 #import "Posto.h"
 #define ARC4RANDOM_MAX      0x100000000
 
@@ -19,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [_mapView setDelegate:self];
     locationManager = [[CLLocationManager alloc] init];
     [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
     [locationManager setDelegate:self];
@@ -26,6 +28,7 @@
         [locationManager requestWhenInUseAuthorization];
     }
     [locationManager startUpdatingLocation];
+    [_mapView.userLocation setTitle:@"Você"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,7 +65,7 @@
             for (MKMapItem *item in response.mapItems) {
                 Posto *posto = [[Posto alloc] initWithBandeira:item.name andCoordenadas:item.placemark.coordinate andEndereco:item.placemark.thoroughfare andCep:item.placemark.postalCode andPrecoGas:(((double)arc4random() / ARC4RANDOM_MAX)* 3.0f)+1 andPrecoAlc:(((double)arc4random() / ARC4RANDOM_MAX)* 2.0f)+1];
                 [_matchingItems addObject:posto];
-                MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+                Annotation *annotation = [[Annotation alloc] init];
                 annotation.coordinate = posto.coordenadas;
                 annotation.title = posto.bandeira;
                 annotation.subtitle = [posto getDescricao];
@@ -86,5 +89,32 @@
         filtroTableController.matchingItems = [[NSMutableArray alloc] initWithArray:_matchingItems];
     }
 }
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    MKAnnotationView *pinView = nil;
+    if(annotation != mapView.userLocation) {
+        static NSString *defaultPinID = @"com.invasivecode.pin";
+        pinView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:defaultPinID];
+        if (pinView == nil)
+            pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"current"];
+        UIButton *buttonRota = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        [buttonRota addTarget:self action:@selector(tracarRota:segue:) forControlEvents:UIControlEventTouchUpInside];
+        UIImage *img = [UIImage imageNamed:@"carro.png"];
+        [buttonRota setImage:img forState:UIControlStateNormal];
+        pinView.leftCalloutAccessoryView = buttonRota;
+        pinView.canShowCallout = YES;
+        pinView.image = [UIImage imageNamed:@"redpin.png"];
+    }
+    return pinView;
+}
+
+- (void)tracarRota:(Posto *)p segue:(id)sender {
+//    MKDirectionsRequest *request = [[MKDirectionsRequest alloc] init];
+//    request.source = [MKMapItem mapItemForCurrentLocation];
+//    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:p.coordenadas addressDictionary:(NSDictionary *)@{(NSString *)kABPersonAddressStreetKey:(@"%@, %@", p.endereco, p.cep)}];
+//    request.destination = [[MKMapItem alloc] initWithPlacemark:placemark];
+}
+
+
 
 @end

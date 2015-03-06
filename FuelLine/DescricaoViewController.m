@@ -15,7 +15,6 @@
 
 @implementation DescricaoViewController{
     CLLocationManager *manager;
-    //CLLocationCoordinate2D
     
 }
 - (void)viewDidLoad {

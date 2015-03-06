@@ -124,15 +124,17 @@
 
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    [self ordenar:buttonIndex];
-    [self.tableView reloadData];
+    if (buttonIndex == 0 || buttonIndex == 1) {
+        [self ordenar:buttonIndex];
+        [self.tableView reloadData];
+    }
 }
 
 
 - (void)ordenar:(NSInteger)buttonIndex{
     _matchingItems = [_matchingItems sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         double first, second;
-        if (buttonIndex==0) {
+        if (buttonIndex == 0) {
             first = [(Posto *)obj1 precoGas];
             second = [(Posto *)obj2 precoGas];
         } else {

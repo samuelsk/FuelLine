@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
+#import <AddressBook/AddressBook.h>
 
-@interface FirstViewController : UIViewController <CLLocationManagerDelegate>{
+@interface FirstViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate> {
     CLLocationManager *locationManager;
     
 }
