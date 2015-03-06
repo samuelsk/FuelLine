@@ -7,17 +7,23 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="300" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="300" height="586"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fuelline" translatesAutoresizingMaskIntoConstraints="NO" id="i0L-td-4Os">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fuelline" translatesAutoresizingMaskIntoConstraints="NO" id="i0L-td-4Os">
                     <rect key="frame" x="0.0" y="-14" width="300" height="600"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="i0L-td-4Os" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="0tE-A1-0aJ"/>
+                <constraint firstItem="i0L-td-4Os" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-14" id="hNi-Vx-bVI"/>
+                <constraint firstAttribute="trailing" secondItem="i0L-td-4Os" secondAttribute="trailing" id="qdo-5s-S0Q"/>
+                <constraint firstAttribute="bottom" secondItem="i0L-td-4Os" secondAttribute="bottom" id="vwX-40-scr"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="458" y="380"/>
+            <point key="canvasLocation" x="458" y="373"/>
         </view>
     </objects>
     <resources>
