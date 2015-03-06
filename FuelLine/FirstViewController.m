@@ -81,7 +81,7 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier]isEqualToString:@"filtroTableView"]) {
+    if ([[segue identifier]isEqualToString:@"filtroViewSegue"]) {
         FiltroViewController *filtroTableController = [segue destinationViewController];
         filtroTableController.matchingItems = [[NSMutableArray alloc] initWithArray:_matchingItems];
     }

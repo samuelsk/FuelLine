@@ -1,5 +1,5 @@
 //
-//  FiltroTableViewController.m
+//  FiltroViewController.m
 //  FuelLine
 //
 //  Created by Guilherme on 03/03/15.
@@ -49,13 +49,12 @@
     return _matchingItems.count;
 }
 
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    FiltroTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FiltroTableCell" forIndexPath:indexPath];
+- (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    FiltroTableViewCell *cell = [tv dequeueReusableCellWithIdentifier:@"FiltroTableCell" forIndexPath:indexPath];
     Posto *posto = _matchingItems[[indexPath row]];
-    cell.nomeBandeira.text = posto.bandeira;
-    cell.precoGas.text = [NSString stringWithFormat:@"%.4g", posto.precoGas];
-    cell.precoAlc.text = [NSString stringWithFormat:@"%.4g", posto.precoAlc];
+    cell.bandeira.text = posto.bandeira;
+    cell.precoGas.text = [NSString stringWithFormat:@"R$%.4g", posto.precoGas];
+    cell.precoAlc.text = [NSString stringWithFormat:@"R$%.4g", posto.precoAlc];
     return cell;
 }
 
@@ -115,7 +114,7 @@
 
 - (IBAction)filtrar:(id)sender {
     UIActionSheet *actionSheet;
-    actionSheet = [[UIActionSheet alloc] initWithTitle:@"Filtrar por:" delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:nil otherButtonTitles:@"Gasolina", @"Álcool", @"Bandeira", nil];
+    actionSheet = [[UIActionSheet alloc] initWithTitle:@"Filtrar por:" delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:nil otherButtonTitles:@"Gasolina", @"Álcool", nil];
     
     
     
@@ -125,10 +124,8 @@
 
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex==0 || buttonIndex ==1) {
-        [self ordenar:buttonIndex];
-        [self.tableView reloadData];
-    }
+    [self ordenar:buttonIndex];
+    [self.tableView reloadData];
 }
 
 

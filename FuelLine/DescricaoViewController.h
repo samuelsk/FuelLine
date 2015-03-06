@@ -12,7 +12,7 @@
 @interface DescricaoViewController : UIViewController
 
 @property Posto *posto;
-@property (weak, nonatomic) IBOutlet UILabel *nomeBandeira;
+@property (weak, nonatomic) IBOutlet UILabel *bandeira;
 @property (weak, nonatomic) IBOutlet UILabel *endereco;
 @property (weak, nonatomic) IBOutlet UILabel *precoGas;
 @property (weak, nonatomic) IBOutlet UILabel *precoAlc;

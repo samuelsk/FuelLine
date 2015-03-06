@@ -20,10 +20,10 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _nomeBandeira.text = _posto.bandeira;
+    _bandeira.text = _posto.bandeira;
     _endereco.text = [NSString stringWithFormat:@"%@, %@", _posto.endereco, _posto.cep];
-    _precoGas.text = [NSString stringWithFormat:@"R$%f", _posto.precoGas];
-    _precoAlc.text = [NSString stringWithFormat:@"R$%f", _posto.precoAlc];
+    _precoGas.text = [NSString stringWithFormat:@"R$%.4g", _posto.precoGas];
+    _precoAlc.text = [NSString stringWithFormat:@"R$%.4g", _posto.precoAlc];
 
 
     // Do any additional setup after loading the view.

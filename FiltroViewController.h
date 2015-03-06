@@ -1,5 +1,5 @@
 //
-//  FiltroTableViewController.h
+//  FiltroViewController.h
 //  FuelLine
 //
 //  Created by Guilherme on 03/03/15.
