@@ -50,12 +50,17 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    FiltroTableViewCell *cell = [tv dequeueReusableCellWithIdentifier:@"FiltroTableCell" forIndexPath:indexPath];
-    Posto *posto = _matchingItems[[indexPath row]];
-    cell.bandeira.text = posto.bandeira;
-    cell.precoGas.text = [NSString stringWithFormat:@"R$%.4g", posto.precoGas];
-    cell.precoAlc.text = [NSString stringWithFormat:@"R$%.4g", posto.precoAlc];
-    return cell;
+    if (_matchingItems == 0) {
+        //Inserir "Nenhum posto encontrado."
+        return 0;
+    } else {
+        FiltroTableViewCell *cell = [tv dequeueReusableCellWithIdentifier:@"FiltroTableCell" forIndexPath:indexPath];
+        Posto *posto = _matchingItems[[indexPath row]];
+        cell.bandeira.text = posto.bandeira;
+        cell.precoGas.text = [NSString stringWithFormat:@"R$%.4g", posto.precoGas];
+        cell.precoAlc.text = [NSString stringWithFormat:@"R$%.4g", posto.precoAlc];
+        return cell;
+    }
 }
 
 

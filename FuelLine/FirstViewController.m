@@ -98,7 +98,6 @@
         if (pinView == nil)
             pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"current"];
         UIButton *buttonRota = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        [buttonRota addTarget:self action:@selector(tracarRota:segue:) forControlEvents:UIControlEventTouchUpInside];
         UIImage *img = [UIImage imageNamed:@"carro.png"];
         [buttonRota setImage:img forState:UIControlStateNormal];
         pinView.leftCalloutAccessoryView = buttonRota;
@@ -108,11 +107,30 @@
     return pinView;
 }
 
-- (void)tracarRota:(Posto *)p segue:(id)sender {
-//    MKDirectionsRequest *request = [[MKDirectionsRequest alloc] init];
-//    request.source = [MKMapItem mapItemForCurrentLocation];
-//    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:p.coordenadas addressDictionary:(NSDictionary *)@{(NSString *)kABPersonAddressStreetKey:(@"%@, %@", p.endereco, p.cep)}];
-//    request.destination = [[MKMapItem alloc] initWithPlacemark:placemark];
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    Annotation *annotation = view.annotation;
+    MKDirectionsRequest *request = [[MKDirectionsRequest alloc] init];
+    request.source = [MKMapItem mapItemForCurrentLocation];
+    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:annotation.coordinate addressDictionary:(NSDictionary *)@{(NSString *)kABPersonAddressStreetKey:annotation.title}];
+    request.destination = [[MKMapItem alloc] initWithPlacemark:placemark];
+    MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
+    [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+        if (error) {
+            NSLog(@"Falha em encontrar uma rota.");
+        } else {
+            [_mapView removeOverlays:[_mapView overlays]];
+            for (MKRoute *route in response.routes) {
+                [_mapView addOverlay:route.polyline level:MKOverlayLevelAboveRoads];
+            }
+        }
+    }];
+}
+
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+    MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithOverlay:overlay];
+    renderer.strokeColor = [UIColor blueColor];
+    renderer.lineWidth = 5.0;
+    return renderer;
 }
 
 

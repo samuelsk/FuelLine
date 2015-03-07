@@ -47,4 +47,8 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
+
+- (IBAction)voltarMapa:(id)sender {
+    [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
 @end
