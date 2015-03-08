@@ -76,7 +76,6 @@
             if (_foundItems.count == 0) {
                 //Todos os itens encontrados são acessados.
                 for (MKMapItem *item in response.mapItems) {
-                    NSLog(@"NO");
                     //É criado um objeto Posto para reter as informações do local de negócio encontrado, como nome, coordenadas, endereço e o preço (genérico) da gasolina e do álcool.
                     Posto *posto = [[Posto alloc] initWithBandeira:item.name andCoordenadas:item.placemark.coordinate andEndereco:item.placemark.thoroughfare andCep:item.placemark.postalCode andPrecoGas:(((double)arc4random() / ARC4RANDOM_MAX)* 3.0f)+1 andPrecoAlc:(((double)arc4random() / ARC4RANDOM_MAX)* 2.0f)+1];
                     //Cada objeto Posto é guardado em um vetor para uso futuro.
@@ -86,7 +85,6 @@
                 [_foundItems addObjectsFromArray:_matchingItems];
             } else {
                 NSUInteger count = _foundItems.count;
-                NSLog(@"%lu", count);
                 //Todos os itens encontrados são acessados.
                 for (MKMapItem *item in response.mapItems) {
                     BOOL alreadyFound = NO;
@@ -110,7 +108,6 @@
                 }
             }
             //É adicionada um pino para cada posto de gasolina encontrado e guardado no vetor.
-            NSLog(@"%lu", _matchingItems.count);
             for (Posto *p in _matchingItems) {
                 //É criada uma annotation para adicionar os pinos no mapa com base nos parâmetros dados.
                 Annotation *annotation = [[Annotation alloc] init];
