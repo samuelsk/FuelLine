@@ -18,6 +18,7 @@
 }
 
 @property NSMutableArray* matchingItems;
+@property NSMutableArray* foundItems;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 - (IBAction)marcar:(id)sender;

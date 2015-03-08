@@ -326,6 +326,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="precoGas" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o3e-yW-kUh">
                                                     <rect key="frame" x="243" y="11" width="99" height="37"/>
+<<<<<<< Updated upstream
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="82" id="MAA-Tx-WaR"/>
                                                         <constraint firstAttribute="width" constant="99" id="kbX-eD-0cB"/>
@@ -356,6 +357,38 @@
                                                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYI-oY-aO2">
                                                     <rect key="frame" x="14" y="18" width="46" height="30"/>
                                                     <constraints>
+=======
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="82" id="MAA-Tx-WaR"/>
+                                                        <constraint firstAttribute="width" constant="99" id="kbX-eD-0cB"/>
+                                                        <constraint firstAttribute="width" constant="99" id="lTW-pe-gor"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="MAA-Tx-WaR"/>
+                                                            <exclude reference="kbX-eD-0cB"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="heightClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="kbX-eD-0cB"/>
+                                                            <exclude reference="lTW-pe-gor"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="MAA-Tx-WaR"/>
+                                                            <exclude reference="lTW-pe-gor"/>
+                                                        </mask>
+                                                    </variation>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYI-oY-aO2">
+                                                    <rect key="frame" x="14" y="18" width="46" height="30"/>
+                                                    <constraints>
+>>>>>>> Stashed changes
                                                         <constraint firstAttribute="width" constant="46" id="8wM-f3-1eo"/>
                                                         <constraint firstAttribute="width" constant="53" id="AqX-bQ-bmC"/>
                                                         <constraint firstAttribute="width" constant="33" id="TAP-hE-mPq"/>
@@ -611,7 +644,15 @@
                                 <variation key="widthClass=regular" ambiguous="YES">
                                     <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                 </variation>
+<<<<<<< Updated upstream
                                 <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+=======
+<<<<<<< HEAD
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES">
+=======
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+>>>>>>> origin/master
+>>>>>>> Stashed changes
                                     <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                 </variation>
                                 <connections>
@@ -651,6 +692,26 @@
                         </subviews>
                         <color key="backgroundColor" red="0.49920497540022479" green="0.72030588111702221" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+                            <constraint firstItem="EPr-CG-VFf" firstAttribute="top" secondItem="xai-b7-pua" secondAttribute="bottom" id="02J-FZ-Iq9"/>
+                            <constraint firstItem="VVL-Ie-6zf" firstAttribute="firstBaseline" secondItem="Iuy-dO-ilG" secondAttribute="firstBaseline" id="0tZ-zW-R4h"/>
+                            <constraint firstItem="e6s-x2-NbF" firstAttribute="top" secondItem="DFL-4M-FmO" secondAttribute="bottom" constant="8" symbolic="YES" id="3G7-Eu-ppm"/>
+                            <constraint firstItem="VVL-Ie-6zf" firstAttribute="leading" secondItem="Iuy-dO-ilG" secondAttribute="trailing" constant="55" id="3Mc-8s-Nc0"/>
+                            <constraint firstItem="DFL-4M-FmO" firstAttribute="top" secondItem="EPr-CG-VFf" secondAttribute="bottom" constant="15" id="4ed-uN-nx4"/>
+                            <constraint firstItem="DFL-4M-FmO" firstAttribute="firstBaseline" secondItem="Iuy-dO-ilG" secondAttribute="firstBaseline" id="635-ec-Nhp"/>
+                            <constraint firstItem="Iuy-dO-ilG" firstAttribute="leading" secondItem="DFL-4M-FmO" secondAttribute="trailing" constant="26" id="BwP-qR-uRu"/>
+                            <constraint firstItem="DFL-4M-FmO" firstAttribute="baseline" secondItem="Iuy-dO-ilG" secondAttribute="baseline" id="K6l-Ms-mbT"/>
+                            <constraint firstItem="EPr-CG-VFf" firstAttribute="trailing" secondItem="e6s-x2-NbF" secondAttribute="trailing" id="LXv-uL-LdH"/>
+                            <constraint firstItem="DFL-4M-FmO" firstAttribute="leading" secondItem="kIB-Mx-a4Q" secondAttribute="leadingMargin" constant="61" id="bZs-dG-gfZ"/>
+                            <constraint firstAttribute="trailing" secondItem="EPr-CG-VFf" secondAttribute="trailing" id="dI2-XH-IKo"/>
+                            <constraint firstItem="EPr-CG-VFf" firstAttribute="leading" secondItem="e6s-x2-NbF" secondAttribute="leading" id="gLn-Yu-XVh"/>
+                            <constraint firstItem="e6s-x2-NbF" firstAttribute="bottom" secondItem="3Us-3y-hYw" secondAttribute="top" id="nCA-bL-KtM"/>
+                            <constraint firstItem="e6s-x2-NbF" firstAttribute="leading" secondItem="kIB-Mx-a4Q" secondAttribute="leading" id="wVg-Lf-PWg"/>
+                            <constraint firstItem="VVL-Ie-6zf" firstAttribute="baseline" secondItem="Iuy-dO-ilG" secondAttribute="baseline" id="yVq-cs-g3f"/>
+=======
+>>>>>>> Stashed changes
                             <constraint firstItem="e6s-x2-NbF" firstAttribute="bottom" secondItem="3Us-3y-hYw" secondAttribute="top" id="2uT-wM-Aan"/>
                             <constraint firstItem="Iuy-dO-ilG" firstAttribute="firstBaseline" secondItem="VVL-Ie-6zf" secondAttribute="firstBaseline" id="3IG-nj-tdm"/>
                             <constraint firstItem="e6s-x2-NbF" firstAttribute="top" secondItem="Iuy-dO-ilG" secondAttribute="bottom" constant="22" id="4Ew-3E-0zA"/>
@@ -700,6 +761,10 @@
                             <constraint firstItem="3Us-3y-hYw" firstAttribute="top" secondItem="DFL-4M-FmO" secondAttribute="bottom" constant="258" id="vZE-yF-D9v"/>
                             <constraint firstItem="e6s-x2-NbF" firstAttribute="top" secondItem="EPr-CG-VFf" secondAttribute="bottom" constant="59" id="xtJ-z6-Ovl"/>
                             <constraint firstItem="VVL-Ie-6zf" firstAttribute="top" secondItem="EPr-CG-VFf" secondAttribute="bottom" constant="14" id="zHD-h1-F0m"/>
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -740,6 +805,26 @@
                         </variation>
                         <variation key="heightClass=compact">
                             <mask key="constraints">
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+                                <exclude reference="02J-FZ-Iq9"/>
+                                <exclude reference="LXv-uL-LdH"/>
+                                <exclude reference="dI2-XH-IKo"/>
+                                <exclude reference="gLn-Yu-XVh"/>
+                                <exclude reference="3G7-Eu-ppm"/>
+                                <exclude reference="nCA-bL-KtM"/>
+                                <exclude reference="wVg-Lf-PWg"/>
+                                <exclude reference="4ed-uN-nx4"/>
+                                <exclude reference="635-ec-Nhp"/>
+                                <exclude reference="K6l-Ms-mbT"/>
+                                <exclude reference="bZs-dG-gfZ"/>
+                                <exclude reference="BwP-qR-uRu"/>
+                                <exclude reference="0tZ-zW-R4h"/>
+                                <exclude reference="3Mc-8s-Nc0"/>
+                                <exclude reference="yVq-cs-g3f"/>
+=======
+>>>>>>> Stashed changes
                                 <exclude reference="R4C-px-2eK"/>
                                 <include reference="X9J-ly-HDW"/>
                                 <include reference="ax8-bd-Uf5"/>
@@ -773,10 +858,34 @@
                                 <include reference="auq-Hf-gSj"/>
                                 <exclude reference="fz5-CU-atX"/>
                                 <include reference="iF3-uz-zcE"/>
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="constraints">
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+                                <include reference="02J-FZ-Iq9"/>
+                                <include reference="LXv-uL-LdH"/>
+                                <include reference="dI2-XH-IKo"/>
+                                <include reference="gLn-Yu-XVh"/>
+                                <include reference="3G7-Eu-ppm"/>
+                                <include reference="nCA-bL-KtM"/>
+                                <include reference="wVg-Lf-PWg"/>
+                                <include reference="4ed-uN-nx4"/>
+                                <include reference="635-ec-Nhp"/>
+                                <include reference="K6l-Ms-mbT"/>
+                                <include reference="bZs-dG-gfZ"/>
+                                <include reference="BwP-qR-uRu"/>
+                                <include reference="0tZ-zW-R4h"/>
+                                <include reference="3Mc-8s-Nc0"/>
+                                <include reference="yVq-cs-g3f"/>
+=======
+>>>>>>> Stashed changes
                                 <include reference="BzY-K2-6si"/>
                                 <exclude reference="R4C-px-2eK"/>
                                 <include reference="TBD-bN-nJI"/>
@@ -809,6 +918,10 @@
                                 <exclude reference="fz5-CU-atX"/>
                                 <include reference="jwT-hv-alc"/>
                                 <include reference="zHD-h1-F0m"/>
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
                             </mask>
                         </variation>
                     </view>

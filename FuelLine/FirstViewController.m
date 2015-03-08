@@ -29,8 +29,9 @@
     }
     [locationManager startUpdatingLocation];
     [_mapView.userLocation setTitle:@"Você"];
-    //É criado um vetor para guardar as informações de todos os postos de gasolina encontrados.
+    //São criados dois vetores para guardar as informações de todos os postos de gasolina encontrados. O vetor matchingItems sempre terá no máximo 10 itens, enquanto que o foundItems poderá ter N valores.
     _matchingItems = [[NSMutableArray alloc] initWithCapacity:10];
+    _foundItems = [[NSMutableArray alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,8 +54,8 @@
 
 //Método que irá marcar os postos de gasolina no mapa.
 - (IBAction)marcar:(id)sender {
-//    //O método remove todos os postos encontrados antes de fazer uma nova busca.
-//    [_matchingItems removeAllObjects];
+    //O método remove todos os postos encontrados antes de fazer uma nova busca.
+    [_matchingItems removeAllObjects];
     //O método remove todas as annotations existentes antes de adicionar as novas.
     [_mapView removeAnnotations:_mapView.annotations];
     //É criado um MKLocalSearchRequest, que retém as informações necessárias para se inicializar uma busca por locais de negócio (i.e. business locations) registrados.
@@ -70,23 +71,57 @@
         //O método irá parar a execução caso nenhum local de negócio seja encontrado.
         if (response.mapItems.count == 0)
             NSLog(@"Nenhum posto encontrado.");
-        else
-            //Todos os itens encontrados são acessados.
-            for (MKMapItem *item in response.mapItems) {
-                //É criado um objeto Posto para reter as informações do local de negócio encontrado, como nome, coordenadas, endereço e o preço da gasolina e do álcool (Valores genéricos).
-                Posto *posto = [[Posto alloc] initWithBandeira:item.name andCoordenadas:item.placemark.coordinate andEndereco:item.placemark.thoroughfare andCep:item.placemark.postalCode andPrecoGas:(((double)arc4random() / ARC4RANDOM_MAX)* 3.0f)+1 andPrecoAlc:(((double)arc4random() / ARC4RANDOM_MAX)* 2.0f)+1];
-                //Cada objeto Posto é guardado em um vetor para uso futuro.
-                [_matchingItems addObject:posto];
+        else {
+            //O código seguinte irá executar apenas caso esta seja a primeira busca (i.e. o vetor foundItems estiver vazio).
+            if (_foundItems.count == 0) {
+                //Todos os itens encontrados são acessados.
+                for (MKMapItem *item in response.mapItems) {
+                    NSLog(@"NO");
+                    //É criado um objeto Posto para reter as informações do local de negócio encontrado, como nome, coordenadas, endereço e o preço (genérico) da gasolina e do álcool.
+                    Posto *posto = [[Posto alloc] initWithBandeira:item.name andCoordenadas:item.placemark.coordinate andEndereco:item.placemark.thoroughfare andCep:item.placemark.postalCode andPrecoGas:(((double)arc4random() / ARC4RANDOM_MAX)* 3.0f)+1 andPrecoAlc:(((double)arc4random() / ARC4RANDOM_MAX)* 2.0f)+1];
+                    //Cada objeto Posto é guardado em um vetor para uso futuro.
+                    [_matchingItems addObject:posto];
+                }
+                //Todos os postos de gasolina encontrados são adicionados ao vetor foundItems.
+                [_foundItems addObjectsFromArray:_matchingItems];
+            } else {
+                NSUInteger count = _foundItems.count;
+                NSLog(@"%lu", count);
+                //Todos os itens encontrados são acessados.
+                for (MKMapItem *item in response.mapItems) {
+                    BOOL alreadyFound = NO;
+                    //É verificado se o posto de gasolina encontrado já havia sido encontrado previamente. Se sim, ele manterá os valores originais. Se não, ele irá gerar valores genéricos para os preços.
+                    //Obs.: Foi necessário um for simples porque o vetor foundItems pode aumentar de tamanho durante a execução do for, impossibilitando o for avançado.
+                    for (int i = 0; i<count; i++) {
+                        Posto *p = _foundItems[i];
+                        if (p.coordenadas.latitude == item.placemark.coordinate.latitude &&
+                            p.coordenadas.longitude == item.placemark.coordinate.longitude) {
+                            [_matchingItems addObject:p];
+                            alreadyFound = YES;
+                        }
+                    }
+                    if (!alreadyFound) {
+                        //É criado um objeto Posto para reter as informações do local de negócio encontrado, como nome, coordenadas, endereço e o preço (genérico) da gasolina e do álcool.
+                        Posto *posto = [[Posto alloc] initWithBandeira:item.name andCoordenadas:item.placemark.coordinate andEndereco:item.placemark.thoroughfare andCep:item.placemark.postalCode andPrecoGas:(((double)arc4random() / ARC4RANDOM_MAX)* 3.0f)+1 andPrecoAlc:(((double)arc4random() / ARC4RANDOM_MAX)* 2.0f)+1];
+                        [_matchingItems addObject:posto];
+                        //O novo posto é guardado em um vetor para evitar que novos valores aleatórios sejam gerados em buscas futuras.
+                        [_foundItems addObject:posto];
+                    }
+                }
+            }
+            //É adicionada um pino para cada posto de gasolina encontrado e guardado no vetor.
+            NSLog(@"%lu", _matchingItems.count);
+            for (Posto *p in _matchingItems) {
                 //É criada uma annotation para adicionar os pinos no mapa com base nos parâmetros dados.
                 Annotation *annotation = [[Annotation alloc] init];
-                annotation.coordinate = posto.coordenadas;
-                annotation.title = posto.bandeira;
-                annotation.subtitle = [posto getDescricao];
+                annotation.coordinate = p.coordenadas;
+                annotation.title = p.bandeira;
+                annotation.subtitle = [p getDescricao];
                 //Método que adiciona a annotation no mapa.
                 [_mapView addAnnotation:annotation];
             }
+        }
     }];
-    
 }
 
 //Método que irá centralizar o mapa na posição atual do usuário.
@@ -101,22 +136,19 @@
 }
 
 - (IBAction)encontrarBarato:(id)sender {
-    if (_matchingItems.count == 0) {
-        [self marcar:sender];
+    Posto *barato = _matchingItems.firstObject;
+    for (Posto *p in _matchingItems) {
+        if (p.precoGas < barato.precoGas)
+            barato = p;
     }
-        Posto *barato = _matchingItems.firstObject;
-        for (Posto *p in _matchingItems) {
-            if (p.precoGas < barato.precoGas)
-                barato = p;
-        }
-        [self tracarRota:barato];
-        [_mapView removeAnnotations:_mapView.annotations];
-        Annotation *annotation = [[Annotation alloc] init];
-        annotation.coordinate = barato.coordenadas;
-        annotation.title = barato.bandeira;
-        annotation.subtitle = [barato getDescricao];
-        //Método que adiciona a annotation no mapa.
-        [_mapView addAnnotation:annotation];
+    [self tracarRota:barato];
+    [_mapView removeAnnotations:_mapView.annotations];
+    Annotation *annotation = [[Annotation alloc] init];
+    annotation.coordinate = barato.coordenadas;
+    annotation.title = barato.bandeira;
+    annotation.subtitle = [barato getDescricao];
+    //Método que adiciona a annotation no mapa.
+    [_mapView addAnnotation:annotation];
 }
 
 //Método que será executado durante a transição de uma view para a próxima.
@@ -166,8 +198,8 @@
     Posto *p;
     //É encontrado o posto de gasolina selecionado dentre os postos de gasolina guardados no vetor.
     for (p in _matchingItems) {
-        if (p.coordenadas.latitude == annotation.coordinate.latitude
-            && p.coordenadas.longitude == annotation.coordinate.longitude)
+        if (p.coordenadas.latitude == annotation.coordinate.latitude &&
+            p.coordenadas.longitude == annotation.coordinate.longitude)
             break;
     }
     [self tracarRota:p];
