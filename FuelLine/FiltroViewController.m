@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Samuel Shin Kim. All rights reserved.
 //
 
-#import "FiltroViewController.h"
 #import "FirstViewController.h"
+#import "FiltroViewController.h"
 #import "FiltroTableViewCell.h"
 #import "DescricaoViewController.h"
 #import "Posto.h"
@@ -50,17 +50,12 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (_matchingItems == 0) {
-        //Inserir "Nenhum posto encontrado."
-        return 0;
-    } else {
-        FiltroTableViewCell *cell = [tv dequeueReusableCellWithIdentifier:@"FiltroTableCell" forIndexPath:indexPath];
-        Posto *posto = _matchingItems[[indexPath row]];
-        cell.bandeira.text = posto.bandeira;
-        cell.precoGas.text = [NSString stringWithFormat:@"R$%.4g", posto.precoGas];
-        cell.precoAlc.text = [NSString stringWithFormat:@"R$%.4g", posto.precoAlc];
-        return cell;
-    }
+    FiltroTableViewCell *cell = [tv dequeueReusableCellWithIdentifier:@"FiltroTableCell" forIndexPath:indexPath];
+    Posto *posto = _matchingItems[[indexPath row]];
+    cell.bandeira.text = posto.bandeira;
+    cell.precoGas.text = [NSString stringWithFormat:@"R$%.4g", posto.precoGas];
+    cell.precoAlc.text = [NSString stringWithFormat:@"R$%.4g", posto.precoAlc];
+    return cell;
 }
 
 
@@ -101,9 +96,11 @@
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+//Método que será executado durante a transição de uma view para a próxima.
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    //É criada uma instância da próxima view para que seus atributos sejam acessíveis.
     DescricaoViewController *descricaoViewController = [segue destinationViewController];
+    //O posto de gasolina representado pela célula selecionada é passado para a próxima view.
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     descricaoViewController.posto = _matchingItems[[indexPath row]];
 }
@@ -111,23 +108,20 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 
-
 - (IBAction)voltar:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 
 }
 
+//Método que exibe um menu quando o botão for selecionado.
 - (IBAction)filtrar:(id)sender {
-    UIActionSheet *actionSheet;
-    actionSheet = [[UIActionSheet alloc] initWithTitle:@"Filtrar por:" delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:nil otherButtonTitles:@"Gasolina", @"Álcool", nil];
-    
-    
-    
+    //O menu é configurado com um título e opções, ordenadas a partir do índice 0 (i.e. Gasolina seria 0 e Álcool seria 1).
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Filtrar por:" delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:nil otherButtonTitles:@"Gasolina", @"Álcool", nil];
+    //O menu é exibido.
     [actionSheet showInView:self.view];
-    
 }
 
-
+//Método executado quando o usuário faz uma seleção após abrir o menu 'Filtrar', incluindo fora do menu.
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0 || buttonIndex == 1) {
         [self ordenar:buttonIndex];
@@ -135,7 +129,7 @@
     }
 }
 
-
+//Método que ordena o vetor de postos de gasolina com base no atributo precoGas ou precoAlc, dependendo do parâmetro enviado.
 - (void)ordenar:(NSInteger)buttonIndex{
     _matchingItems = [_matchingItems sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         double first, second;
@@ -154,6 +148,13 @@
     }];
 }
 
+//Método que traça uma rota da localização atual do usuário ao posto de gasolina representado pela célula selecionada.
+- (IBAction)tracarRota:(id)sender {
+    FirstViewController *firstViewController;
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    [firstViewController tracarRota:_matchingItems[[indexPath row]]];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 @end

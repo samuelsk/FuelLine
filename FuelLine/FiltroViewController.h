@@ -17,6 +17,7 @@
 
 - (IBAction)voltar:(id)sender;
 - (IBAction)filtrar:(id)sender;
+- (IBAction)tracarRota:(id)sender;
 
 
 @end
