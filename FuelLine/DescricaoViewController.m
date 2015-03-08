@@ -14,7 +14,6 @@
 @end
 
 @implementation DescricaoViewController{
-    CLLocationManager *manager;
     
 }
 - (void)viewDidLoad {
@@ -48,8 +47,14 @@
     
 }
 
+//Método que retorna a primeira view, no caso, a FirstViewController.
 - (IBAction)voltarMapa:(id)sender {
     [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
+
+//Método que traça uma rota da localização atual do usuário ao posto de gasolina exibido.
+- (IBAction)tracarRota:(id)sender {
+}
+
 
 @end

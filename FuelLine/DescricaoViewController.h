@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *precoGas;
 @property (weak, nonatomic) IBOutlet UILabel *precoAlc;
 
--(IBAction)voltar:(id)sender;
+- (IBAction)voltar:(id)sender;
 - (IBAction)voltarMapa:(id)sender;
+- (IBAction)tracarRota:(id)sender;
+
 @end

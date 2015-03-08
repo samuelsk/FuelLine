@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 #import <AddressBook/AddressBook.h>
+#import "Posto.h"
 
 @interface FirstViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate> {
     CLLocationManager *locationManager;
@@ -24,5 +25,7 @@
 - (IBAction)marcar:(id)sender;
 - (IBAction)centralizar:(id)sender;
 - (IBAction)limpar:(id)sender;
+- (IBAction)encontrarBarato:(id)sender;
+- (void)tracarRota:(Posto *)p;
 
 @end

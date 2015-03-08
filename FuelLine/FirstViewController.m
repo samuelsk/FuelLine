@@ -9,7 +9,6 @@
 #import "FirstViewController.h"
 #import "FiltroViewController.h"
 #import "Annotation.h"
-#import "Posto.h"
 #define ARC4RANDOM_MAX      0x100000000
 
 @interface FirstViewController ()
@@ -20,6 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //O MKMapView se atribui como delegate para permitir a atualização de annotations e rotas.
     [_mapView setDelegate:self];
     locationManager = [[CLLocationManager alloc] init];
     [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
@@ -46,79 +46,150 @@
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    NSLog(@"Erro.");
+    NSLog(@"Não foi possível encontrar sua localização.");
 }
 
+//Método que irá marcar os postos de gasolina no mapa.
 - (IBAction)marcar:(id)sender {
+    //O método remove todas as annotations existentes antes de adicionar as novas.
     [_mapView removeAnnotations:_mapView.annotations];
+    //É criado um MKLocalSearchRequest, que retém as informações necessárias para se inicializar uma busca por locais de negócio (i.e. business locations) registrados.
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
+    //Parâmetro de busca, no caso, todos os locais de negócio que possuam a tag seguinte.
     request.naturalLanguageQuery = @"Fuel";
+    //Região de busca, no caso, o mapa inteiro.
     request.region = _mapView.region;
-    
+    //É criado um vetor para guardar as informações de todos os postos de gasolina encontrados.
     _matchingItems = [[NSMutableArray alloc] initWithCapacity:10];
+    //É criado um MKLocalSearch, que é responsável por realizar a busca com base nos parâmetros atribuídos na request.
     MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
-    
+    //Método que realiza a busca. Por padrão, o método busca por no máximo 10 locais de negócio.
     [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
+        //O método irá parar a execução caso nenhum local de negócio seja encontrado.
         if (response.mapItems.count == 0)
             NSLog(@"Nenhum posto encontrado.");
         else
+            //Todos os itens encontrados são acessados.
             for (MKMapItem *item in response.mapItems) {
+                //É criado um objeto Posto para reter as informações do local de negócio encontrado, como nome, coordenadas, endereço e o preço da gasolina e do álcool (Valores genéricos).
                 Posto *posto = [[Posto alloc] initWithBandeira:item.name andCoordenadas:item.placemark.coordinate andEndereco:item.placemark.thoroughfare andCep:item.placemark.postalCode andPrecoGas:(((double)arc4random() / ARC4RANDOM_MAX)* 3.0f)+1 andPrecoAlc:(((double)arc4random() / ARC4RANDOM_MAX)* 2.0f)+1];
+                //Cada objeto Posto é guardado em um vetor para uso futuro.
                 [_matchingItems addObject:posto];
+                //É criada uma annotation para adicionar os pinos no mapa com base nos parâmetros dados.
                 Annotation *annotation = [[Annotation alloc] init];
                 annotation.coordinate = posto.coordenadas;
                 annotation.title = posto.bandeira;
                 annotation.subtitle = [posto getDescricao];
+                //Método que adiciona a annotation no mapa.
                 [_mapView addAnnotation:annotation];
             }
     }];
     
 }
 
+//Método que irá centralizar o mapa na posição atual do usuário.
 - (IBAction)centralizar:(id)sender {
     [locationManager startUpdatingLocation];
 }
 
+//Método que irá remover obstruções visuais no mapa, como as annotations e as rotas.
 - (IBAction)limpar:(id)sender {
-     [_mapView removeAnnotations:_mapView.annotations];
+    [_mapView removeOverlays:[_mapView overlays]];
+    [_mapView removeAnnotations:_mapView.annotations];
 }
 
+- (IBAction)encontrarBarato:(id)sender {
+    if (!_matchingItems.count == 0) {
+        Posto *barato;
+        barato.precoGas = 0;
+        for (Posto *p in _matchingItems) {
+            if (p.precoGas < barato.precoGas)
+                barato = p;
+        }
+        [self tracarRota:barato];
+        [_mapView removeAnnotations:_mapView.annotations];
+        Annotation *annotation = [[Annotation alloc] init];
+        annotation.coordinate = barato.coordenadas;
+        annotation.title = barato.bandeira;
+        annotation.subtitle = [barato getDescricao];
+        //Método que adiciona a annotation no mapa.
+        [_mapView addAnnotation:annotation];
+    }
+}
+
+//Método que será executado durante a transição de uma view para a próxima.
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier]isEqualToString:@"filtroViewSegue"]) {
+    //É feita uma verificação de identificação para saber qual view está sendo acessada.
+    if ([[segue identifier] isEqualToString:@"filtroViewSegue"]) {
+        //É criada uma instância da próxima view para que seus atributos sejam acessíveis.
         FiltroViewController *filtroTableController = [segue destinationViewController];
+        //O vetor com as informações dos postos de gasolina encontrados é passado para a próxima view. Caso nenhum posto seja encontrado, é passado um vetor nulo.
         filtroTableController.matchingItems = [[NSMutableArray alloc] initWithArray:_matchingItems];
     }
 }
 
+//Método que será executado quando uma annotation for adicionada no mapa.
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     MKAnnotationView *pinView = nil;
+    //O método apenas continuará a execução caso a annotation adicionada for diferente da que mostra a localização atual do usuário.
     if(annotation != mapView.userLocation) {
+        //É criado um identificador para determinar que o pino é um pino personalizado.
         static NSString *defaultPinID = @"com.invasivecode.pin";
+        //É criada uma MKAnnotationView para determinar o que será mostrado quando um pino for selecionado.
         pinView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:defaultPinID];
+        //Caso o balão do pino esteja vazio (o que sempre será o caso) ela será preenchida com a annotation que está sendo adicionada no mapa.
         if (pinView == nil)
             pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"current"];
+        //É criado um botão para ser adicionado no balão do pino.
         UIButton *buttonRota = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        //É adicionada uma imagem no botão.
         UIImage *img = [UIImage imageNamed:@"carro.png"];
         [buttonRota setImage:img forState:UIControlStateNormal];
+        //É adicionado o botão no pino.
         pinView.leftCalloutAccessoryView = buttonRota;
         pinView.canShowCallout = YES;
+        //É adicionada uma imagem para sobrescrever a imagem padrão do pino. Caso existam múltiplas annotations, elas serão vermelhas. Caso exista apenas uma, ela será amarela.
         pinView.image = [UIImage imageNamed:@"redpin.png"];
+        if (_mapView.annotations.count == 1) {
+            pinView.image = [UIImage imageNamed:@"yellowpin.png"];
+        }
     }
     return pinView;
 }
 
+//Método que será executado quando um objeto CalloutAccessoryView for selecionado.
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    //A annotation que foi selecionada é guardada em um ponteiro.
     Annotation *annotation = view.annotation;
+    Posto *p;
+    //É encontrado o posto de gasolina selecionado dentre os postos de gasolina guardados no vetor.
+    for (p in _matchingItems) {
+        if (p.coordenadas.latitude == annotation.coordinate.latitude
+            && p.coordenadas.longitude == annotation.coordinate.longitude)
+            break;
+    }
+    [self tracarRota:p];
+}
+
+//Método que traça uma rota da localização atual do usuário ao posto de gasolina recebido como parâmetro.
+- (void)tracarRota:(Posto *)p {
+    //É criado um MKDirectionRequest, que retém as informações necessárias para se inicializar uma busca por rotas.
     MKDirectionsRequest *request = [[MKDirectionsRequest alloc] init];
+    //No atributo source é guardada a origem da rota.
     request.source = [MKMapItem mapItemForCurrentLocation];
-    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:annotation.coordinate addressDictionary:(NSDictionary *)@{(NSString *)kABPersonAddressStreetKey:annotation.title}];
+    //É criado um placemark que guarda as informações do posto de gasolina representado pela annotation selecionada, porque os atributos source e destination são do tipo MKMapItem, e um placemark é necessário para inicializar uma MKMapItem.
+    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:p.coordenadas addressDictionary:(NSDictionary *)@{(NSString *)kABPersonAddressStreetKey:p.endereco, (NSString *)kABPersonAddressZIPKey:p.cep}];
+    //No atributo destination é guardado o destino da rota, no caso, o posto de gasolina recebido.
     request.destination = [[MKMapItem alloc] initWithPlacemark:placemark];
+    //É criado um MKDirections, que é responsável por realizar a busca e o preenchimento de possíveis rotas entre a origem e o destino atribuídas na request.
     MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
+    //Método que calcula possíveis rotas.
     [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
         if (error) {
             NSLog(@"Falha em encontrar uma rota.");
         } else {
             [_mapView removeOverlays:[_mapView overlays]];
+            //A sequência de rotas encontradas é adicionada no mapa.
             for (MKRoute *route in response.routes) {
                 [_mapView addOverlay:route.polyline level:MKOverlayLevelAboveRoads];
             }
@@ -126,13 +197,13 @@
     }];
 }
 
+//Método necessário para que um MKMapView consiga preencher as rotas no mapa com base nas características atribuídas no renderizador.
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
     MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithOverlay:overlay];
     renderer.strokeColor = [UIColor blueColor];
     renderer.lineWidth = 5.0;
     return renderer;
 }
-
 
 
 @end
