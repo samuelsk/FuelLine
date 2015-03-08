@@ -29,6 +29,8 @@
     }
     [locationManager startUpdatingLocation];
     [_mapView.userLocation setTitle:@"Você"];
+    //É criado um vetor para guardar as informações de todos os postos de gasolina encontrados.
+    _matchingItems = [[NSMutableArray alloc] initWithCapacity:10];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,12 +47,14 @@
     [locationManager stopUpdatingLocation];
 }
 
--(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"Não foi possível encontrar sua localização.");
 }
 
 //Método que irá marcar os postos de gasolina no mapa.
 - (IBAction)marcar:(id)sender {
+//    //O método remove todos os postos encontrados antes de fazer uma nova busca.
+//    [_matchingItems removeAllObjects];
     //O método remove todas as annotations existentes antes de adicionar as novas.
     [_mapView removeAnnotations:_mapView.annotations];
     //É criado um MKLocalSearchRequest, que retém as informações necessárias para se inicializar uma busca por locais de negócio (i.e. business locations) registrados.
@@ -58,9 +62,7 @@
     //Parâmetro de busca, no caso, todos os locais de negócio que possuam a tag seguinte.
     request.naturalLanguageQuery = @"Fuel";
     //Região de busca, no caso, o mapa inteiro.
-    request.region = _mapView.region;
-    //É criado um vetor para guardar as informações de todos os postos de gasolina encontrados.
-    _matchingItems = [[NSMutableArray alloc] initWithCapacity:10];
+    request.region = MKCoordinateRegionMakeWithDistance(_mapView.centerCoordinate, 500, 500);
     //É criado um MKLocalSearch, que é responsável por realizar a busca com base nos parâmetros atribuídos na request.
     MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
     //Método que realiza a busca. Por padrão, o método busca por no máximo 10 locais de negócio.
@@ -99,9 +101,10 @@
 }
 
 - (IBAction)encontrarBarato:(id)sender {
-    if (!_matchingItems.count == 0) {
-        Posto *barato;
-        barato.precoGas = 0;
+    if (_matchingItems.count == 0) {
+        [self marcar:sender];
+    }
+        Posto *barato = _matchingItems.firstObject;
         for (Posto *p in _matchingItems) {
             if (p.precoGas < barato.precoGas)
                 barato = p;
@@ -114,7 +117,6 @@
         annotation.subtitle = [barato getDescricao];
         //Método que adiciona a annotation no mapa.
         [_mapView addAnnotation:annotation];
-    }
 }
 
 //Método que será executado durante a transição de uma view para a próxima.

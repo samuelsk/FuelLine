@@ -20,8 +20,6 @@
 @property NSMutableArray* matchingItems;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
-
-
 - (IBAction)marcar:(id)sender;
 - (IBAction)centralizar:(id)sender;
 - (IBAction)limpar:(id)sender;
