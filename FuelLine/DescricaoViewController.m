@@ -44,16 +44,18 @@
 
 - (IBAction)voltar:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
-    
 }
 
 //Método que retorna a primeira view, no caso, a FirstViewController.
-- (IBAction)voltarMapa:(id)sender {
-    [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-}
+//- (IBAction)voltarMapa:(id)sender {
+//    [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+//}
 
 //Método que traça uma rota da localização atual do usuário ao posto de gasolina exibido.
 - (IBAction)tracarRota:(id)sender {
+    [self.delegate tracarRota:_posto];
+    [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

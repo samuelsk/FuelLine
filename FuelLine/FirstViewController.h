@@ -12,18 +12,24 @@
 #import <AddressBook/AddressBook.h>
 #import "Posto.h"
 
-@interface FirstViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate> {
+@protocol FirstViewDelegate <NSObject>
+
+- (void)tracarRota:(Posto *)p;
+
+@end
+
+@interface FirstViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate, FirstViewDelegate> {
     CLLocationManager *locationManager;
-    
 }
 
+@property Posto *posto;
 @property NSMutableArray* matchingItems;
+@property NSMutableArray* foundItems;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 - (IBAction)marcar:(id)sender;
 - (IBAction)centralizar:(id)sender;
 - (IBAction)limpar:(id)sender;
 - (IBAction)encontrarBarato:(id)sender;
-- (void)tracarRota:(Posto *)p;
 
 @end

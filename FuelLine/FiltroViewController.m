@@ -100,6 +100,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     //É criada uma instância da próxima view para que seus atributos sejam acessíveis.
     DescricaoViewController *descricaoViewController = [segue destinationViewController];
+    //É criada uma instância desta view para que ela possa se atribuir como uma delegate.
+    FirstViewController *firstViewController = [segue sourceViewController];
+    descricaoViewController.delegate = firstViewController;
     //O posto de gasolina representado pela célula selecionada é passado para a próxima view.
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     descricaoViewController.posto = _matchingItems[[indexPath row]];
@@ -148,11 +151,9 @@
     }];
 }
 
-//Método que traça uma rota da localização atual do usuário ao posto de gasolina representado pela célula selecionada.
-- (IBAction)tracarRota:(id)sender {
-    FirstViewController *firstViewController;
+- (void)tracarRota:(id)sender {
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    [firstViewController tracarRota:_matchingItems[[indexPath row]]];
+    [self.delegate tracarRota:_matchingItems[[indexPath row]]];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

@@ -13,6 +13,7 @@
 
 @property NSArray *matchingItems;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) id<FirstViewDelegate> delegate;
 
 
 - (IBAction)voltar:(id)sender;

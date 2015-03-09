@@ -26,7 +26,7 @@
 }
 
 - (NSString *)getDescricao {
-    return [NSString stringWithFormat:@"Gasolina/Álcool: %f/%f", precoGas, precoAlc];
+    return [NSString stringWithFormat:@"Gasolina: R$%.4g", precoGas];
 }
 
 @end
