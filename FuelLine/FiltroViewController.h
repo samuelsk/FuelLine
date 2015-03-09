@@ -8,17 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface FiltroViewController : UIViewController <UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property NSArray *matchingItems;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) id<FirstViewDelegate> delegate;
 
-
 - (IBAction)voltar:(id)sender;
 - (IBAction)filtrar:(id)sender;
-- (IBAction)tracarRota:(id)sender;
+- (void)tracarRota:(id)sender;
 
 
 @end

@@ -252,7 +252,7 @@
             //A sequência de rotas encontradas é adicionada no mapa.
             for (MKRoute *route in response.routes) {
                 [_mapView addOverlay:route.polyline level:MKOverlayLevelAboveRoads];
-                [_mapView setVisibleMapRect:route.polyline.boundingMapRect edgePadding:UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0) animated:YES];
+                [_mapView setVisibleMapRect:route.polyline.boundingMapRect edgePadding:UIEdgeInsetsMake(30.0, 30.0, 30.0, 30.0) animated:YES];
             }
             [_mapView removeAnnotations:[_mapView annotations]];
             Annotation *annotation = [[Annotation alloc] init];

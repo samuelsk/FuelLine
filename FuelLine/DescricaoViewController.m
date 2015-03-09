@@ -55,7 +55,7 @@
 - (IBAction)tracarRota:(id)sender {
     [self.delegate tracarRota:_posto];
     [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

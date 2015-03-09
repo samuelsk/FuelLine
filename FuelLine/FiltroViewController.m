@@ -55,6 +55,12 @@
     cell.bandeira.text = posto.bandeira;
     cell.precoGas.text = [NSString stringWithFormat:@"R$%.4g", posto.precoGas];
     cell.precoAlc.text = [NSString stringWithFormat:@"R$%.4g", posto.precoAlc];
+    UIButton *rota = [[UIButton alloc] init];
+    rota.frame = CGRectMake(20, 12, 30, 25);
+    rota.tag = indexPath.row;
+    [rota setImage:[UIImage imageNamed:@"carro.png"] forState:UIControlStateNormal];
+    [rota addTarget:self action:@selector(tracarRota:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.contentView addSubview:rota];
     return cell;
 }
 
@@ -151,9 +157,14 @@
     }];
 }
 
+//Método que traça uma rota da localização atual do usuário ao posto de gasolina selecionado.
 - (void)tracarRota:(id)sender {
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    [self.delegate tracarRota:_matchingItems[[indexPath row]]];
+    //Caso a terceira view (i.e. DescricaoViewController) chame o método, será enviado o objeto posto associado ao sender.
+    if ([sender class] == [Posto class])
+        [self.delegate tracarRota:sender];
+    //Caso contrário, será enviado o objeto da célula correspondente.
+    else
+        [self.delegate tracarRota:_matchingItems[[sender tag]]];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
